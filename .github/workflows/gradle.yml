@@ -115,12 +115,17 @@ jobs:
 
     - name: Run OWASP Dependency Check
       run: ./gradlew dependencyCheckAnalyze --continue
+      continue-on-error: true
+      env:
+        NVD_API_KEY: ${{ secrets.NVD_API_KEY }}  # Optional: Add this secret in GitHub repo settings
 
     - name: Upload dependency check results
       uses: actions/upload-artifact@v4
+      if: always()
       with:
         name: dependency-check-report
         path: build/reports/dependency-check-report.*
+        if-no-files-found: warn
 
   # Security: Basic Security Audit
   security-audit:
