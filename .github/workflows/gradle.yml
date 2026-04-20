@@ -117,7 +117,7 @@ jobs:
       run: ./gradlew dependencyCheckAnalyze --continue
       continue-on-error: true
       env:
-        NVD_API_KEY: ${{ secrets.NVD_API_KEY }}  # Optional: Add this secret in GitHub repo settings
+        NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
 
     - name: Upload dependency check results
       uses: actions/upload-artifact@v4
