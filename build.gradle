@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'com.diffplug.spotless' version '6.25.0'
+    id 'org.owasp.dependencycheck' version '9.0.8'
 }
 
 repositories {
@@ -27,4 +28,11 @@ spotless {
     java {
         googleJavaFormat()
     }
+}
+
+// OWASP Dependency Check Configuration
+dependencyCheck {
+    format = 'ALL'
+    failBuildOnCVSS = 7.0  // Fail build on high severity vulnerabilities
+    suppressionFile = 'dependency-check-suppressions.xml'  // Optional: create this file for false positives
 }
